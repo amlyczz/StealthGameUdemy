@@ -11,22 +11,29 @@ UCLASS()
 class FPSGAME_API AFPSObjectiveActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AFPSObjectiveActor();
 
 protected:
 	//网格
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* MeshComp;
 	//球体
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USphereComponent* SphereComp;
-	
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effects")
+	UParticleSystem* PickupFX;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+	void PlayEffects();
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 };
