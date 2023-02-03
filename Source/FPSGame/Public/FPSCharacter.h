@@ -21,7 +21,6 @@ class AFPSCharacter : public ACharacter
 	GENERATED_BODY()
 
 protected:
-
 	/** Pawn mesh: 1st person view  */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Mesh")
 	USkeletalMeshComponent* Mesh1PComponent;
@@ -58,12 +57,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Movement")
 	UParticleSystem* MuzzleFlash;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Gameplay")
+	bool bIsCarryingObjective;
+
 	virtual void Landed(const FHitResult& Hit) override;
 
 	virtual void OnJumped_Implementation() override;
 
 protected:
-	
 	/** Fires a projectile. */
 	void Fire();
 
@@ -81,6 +82,4 @@ public:
 
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
-
 };
-
